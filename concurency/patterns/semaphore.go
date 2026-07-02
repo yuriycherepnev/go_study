@@ -21,9 +21,9 @@ func sWorker(id int, sem chan struct{}, wg *sync.WaitGroup) {
 }
 
 func main() {
-	sem := make(chan struct{}, 2)
+	sem := make(chan struct{}, 3)
 	var wg sync.WaitGroup
-	for i := 1; i <= 5; i++ {
+	for i := 1; i <= 1000; i++ {
 		wg.Add(1)
 		go sWorker(i, sem, &wg)
 	}
