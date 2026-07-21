@@ -13,11 +13,12 @@ import (
 func cancelWrapper(ctx context.Context, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ch := make(chan int)
+
 	go func() {
-		//start worker
 		time.Sleep(5 * time.Second)
 		close(ch)
 	}()
+
 	select {
 	case <-ch:
 		fmt.Println("work done")
@@ -50,6 +51,7 @@ main
 
 cancelWorker
 1. закрытие группы через дефер
+2. создание канала + закрытие через горутину
 2. обрабатываем закрытие контекста через for + select
 3. проверяем через промежутки времени в default
 */
