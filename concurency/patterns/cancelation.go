@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func cancelWrapper(wg *sync.WaitGroup, ctx context.Context) {
+func cancelWrapper(ctx context.Context, wg *sync.WaitGroup) {
 	defer wg.Done()
 	ch := make(chan int)
 	go func() {
@@ -34,7 +34,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 
 	wg.Add(1)
-	go cancelWrapper(wg, ctx)
+	go cancelWrapper(ctx, wg)
 	wg.Wait()
 }
 
